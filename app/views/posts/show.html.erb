@@ -1,10 +1,15 @@
 <div class="container">
+    <%# post %>
     <%= image_tag @post.image, class: "show-image" %>
     <h1><%= @post.title %></h1>
     <p><%= @post.user.name %></p>
     <p><%= @post.location %></p>
     <p><%= @post.description %></p>
-
+    <p><%= @post.get_upvotes.size %> Likes</p>
+    
+    <%# likes %>
+    <%= link_to "Like", like_post_path(@post), method: :get  %>
+    <%# comments %>
     <h4><%= comment_count = pluralize(@post.comments.count, "Comment") %></h4>
     <% @comments.each do |comment| %>
     <p><%= comment.user.name %></p>

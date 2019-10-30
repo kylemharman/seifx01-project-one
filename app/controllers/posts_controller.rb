@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :find_post, only: [:show, :edit, :update, :destroy]
+    before_action :find_post, only: [:show, :edit, :update, :destroy, :upvote]
     before_action :authenticate_user!, except: [:index, :show]
      
     def index 
@@ -40,6 +40,11 @@ class PostsController < ApplicationController
         redirect_to root_path
     end
 
+    def upvote
+        @post.upvote_by current_user
+        redirect_to @post
+    end
+    
     private
 
     def find_post

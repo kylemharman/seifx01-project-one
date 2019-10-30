@@ -7,6 +7,7 @@
             <%= link_to post.title, post %>
         </div>
         <p><%= post.comments.count %> comments</p>
+        <p><%= post.get_likes.size %> likes</p>
     <% end %>
 </div>
 

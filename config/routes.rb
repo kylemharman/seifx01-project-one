@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'posts#index'
   
   resources :posts do
+    member do
+       get "like", to: "posts#upvote"
+    end
     resources :comments
   end
   
