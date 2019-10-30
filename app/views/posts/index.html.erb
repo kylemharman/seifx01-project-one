@@ -1,1 +1,12 @@
-<h1>placeholder</h1>
+<div class="container">
+    <% @post.each do |post| %>
+        <div>
+            <%= link_to post.title, post %>
+        </div>
+    <% end %>
+</div>
+
+<div class="container">
+    <%= link_to 'ADD NEW POST', new_post_path %>
+</div>
+
