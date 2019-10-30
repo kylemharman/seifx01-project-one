@@ -1,9 +1,13 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.location %></p>
-<p><%= @post.description %></p>
-<p><%= @post.user.name %></p>
+<div class="container">
+    <%= image_tag @post.image, class: "show-image" %>
+    <h1><%= @post.title %></h1>
+    <p><%= @post.user.name %></p>
+    <p><%= @post.location %></p>
+    <p><%= @post.description %></p>
 
-
-<%= link_to 'EDIT', edit_post_path(@post) %>
-<%= link_to 'DESTROY', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
-<%= link_to 'HOME', root_path %>
+    <% if current_user %>
+        <%= link_to 'EDIT', edit_post_path(@post) %>
+        <%= link_to 'DESTROY', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
+    <%= link_to 'HOME', root_path %>
+</div>
