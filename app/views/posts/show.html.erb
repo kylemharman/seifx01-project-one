@@ -1,26 +1,46 @@
-<div class="container">
-    <%# post %>
-    <%= image_tag @post.image, class: "show-image" %>
-    <h1><%= @post.title %></h1>
-    <p><%= @post.user.name %></p>
-    <p><%= @post.location %></p>
-    <p><%= @post.description %></p>
-    <p><%= @post.get_upvotes.size %> Likes</p>
-    
-    <%# likes %>
-    <%= link_to "Like", like_post_path(@post), method: :get  %>
-    <%# comments %>
-    <h4><%= comment_count = pluralize(@post.comments.count, "Comment") %></h4>
-    <% @comments.each do |comment| %>
-    <p><%= comment.user.name %></p>
-    <p><%= comment.content %></p>
-    <% end %>
+<% if @post.user == current_user %>
+    <%= link_to 'Edit', edit_post_path(@post) %>
+    <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"} %>
+<% end %>
 
-    <%= render '/comments/form' %>
-
-    <% if current_user %>
-        <%= link_to 'EDIT', edit_post_path(@post) %>
-        <%= link_to 'DESTROY', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
-    <% end %>
-    <%= link_to 'HOME', root_path %>
+<%# post %>
+<span><%= @post.user.name %></span>
+<%# number of like %>
+<div>
+<span><i class="fas fa-heart"></i><%= @post.get_likes.size %></span>
+<%# comments %>
+<span><i class="fas fa-comments"></i><%= comment_count = pluralize(@post.comments.count, "comment") %></span>
 </div>
+
+<div>
+<%= image_tag @post.image, class: "show-image" %>
+</div>
+
+<div>
+    <%# like button %>
+    <a href="<%= like_post_path(@post) %>" data-method="get">
+        <i class="far fa-heart"></i>
+        Like
+    </a>
+</div>
+
+<div><i class="fas fa-image"></i> <%= @post.title %></div>
+<div><i class="fas fa-compass"></i> <%= @post.location %></div>
+<div><i class="fas fa-camera"></i> equipment used needs to go here </div>
+<p><%= @post.description %></p>
+<%# END post %>
+
+<%# add comment %>
+<%= render '/comments/form' %>
+
+<% @comments.each do |comment| %>
+<strong><%= comment.user.name %></strong>
+<p><%= comment.content %></p>
+<% end %>
+
+
+<% if current_user %>
+    <%= link_to 'EDIT', edit_post_path(@post) %>
+    <%= link_to 'DESTROY', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
+<%= link_to 'HOME', root_path %>

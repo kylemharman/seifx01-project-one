@@ -1,17 +1,15 @@
-<div class="container">
-    <% @post.each do |post| %>
-        <div>
-             <%= link_to (image_tag post.image, class: "show-image"), post %>
-        </div>
-        <div>
-            <%= link_to post.title, post %>
-        </div>
-        <p><%= post.comments.count %> comments</p>
-        <p><%= post.get_likes.size %> likes</p>
-    <% end %>
-</div>
+<% if user_signed_in? %>
+    <div>
+        <%= link_to 'ADD NEW SCAPE', new_post_path %>
+    </div>
+<% end %>
 
-<div class="container">
-    <%= link_to 'ADD NEW POST', new_post_path %>
-</div>
+
+<% @post.each do |post| %>
+    <div>
+        <%= link_to (image_tag post.image, class: "show-image"), post %>
+    </div>
+<% end %>
+
+
 

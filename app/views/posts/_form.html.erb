@@ -1,9 +1,9 @@
-<%= simple_form_for(@post, html: { class: 'form-inline' }) do |f| %>
+<%= simple_form_for(@post, html: { class: 'form-group' }) do |f| %>
     <%= f.file_field :image, required: true %>
     <%= f.input :title, required: true %>
     <%= f.input :location, required: true %>
     <%= f.input :description, required: true %>
     <%= f.text_field :user_id, value: current_user.id, class:'d-none'%>
     
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
