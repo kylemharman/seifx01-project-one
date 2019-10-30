@@ -5,6 +5,14 @@
     <p><%= @post.location %></p>
     <p><%= @post.description %></p>
 
+    <h4><%= comment_count = pluralize(@post.comments.count, "Comment") %></h4>
+    <% @comments.each do |comment| %>
+    <p><%= comment.user.name %></p>
+    <p><%= comment.content %></p>
+    <% end %>
+
+    <%= render '/comments/form' %>
+
     <% if current_user %>
         <%= link_to 'EDIT', edit_post_path(@post) %>
         <%= link_to 'DESTROY', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
