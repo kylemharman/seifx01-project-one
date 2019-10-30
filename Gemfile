@@ -25,6 +25,7 @@ gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'acts_as_votable', '~> 0.12.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+gem "aws-sdk-s3", require: false
 
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
