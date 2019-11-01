@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'colors';
+
 .comment-form label {
     display: none;
+}
+
+input.comment-btn {
+    float: right;
+    color: $Shades-of-royal-blue--navy-3-hex;
+    border: 2px solid $Shades-of-royal-blue--navy-3-hex;
+    border-radius: 40px;
+    &:hover {
+        color: $Shades-of-royal-blue--navy-3-hex;
+    }
 }

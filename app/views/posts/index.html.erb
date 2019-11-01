@@ -1,21 +1,30 @@
+<div class="container">
+    <h1>Latest Scapes</h1>
+    
+    <div class=post-section>   
+        <% @post.each do |post| %>
 
-
-<h1>Latest Scapes</h1>
-
-<% @post.each do |post| %>
-    <div>
-        <% if post.user.avatar.attached?  %>
-            <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.avatar, class: "menu-avatar" %>
-            <% end %>
+            <div class="post-container">
+                <div class="post-info-wrapper">
+                    <div class="post-ava-user">
+                        <% if post.user.avatar.attached?  %>
+                            <%= link_to user_path(post.user) do %>
+                                <%= image_tag post.user.avatar, class: "menu-avatar" %>
+                            <% end %>
+                        <% end %>
+                        <%= link_to post.user.name, user_path(post.user) %>
+                    </div>
+                    <div class="post-date">
+                        <p><%= post.image.created_at.strftime("%d %b %y") %></p>
+                    </div>
+                </div>
+                <div>
+                    <%= link_to (image_tag post.image, class: "show-image"), post %>    
+                </div>
+            </div>         
         <% end %>
-        <%= link_to post.user.username, user_path(post.user) %>
-        <p><%= post.image.created_at.strftime("%d %b %y") %></p>
-    </div>
-    <div>
-        <%= link_to (image_tag post.image, class: "show-image"), post %>    
-    </div>
-<% end %>
+    </div> 
 
+</div>
 
 

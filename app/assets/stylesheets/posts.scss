@@ -2,12 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'colors';
+
+// index page styling
+
+.post-section {
+    display: flex;
+    justify-content: center;
+}
+
+.post-container {
+    width: 30%;
+    padding: 1%;
+    .post-info-wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 7px 7px 0;
+        background-color: $bg-grey;
+        .post-date {
+            align-items: center;
+        }
+    }
+}
+
 .show-image {
-    width: 300px;
+    width: 100%;
 }
 
 .avatar {
     width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 
@@ -15,4 +39,147 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+
+.user-update-post {
+    display: flex;
+    justify-content: center;
+    margin: 10px 20px;
+    a {
+        padding: 10px 15px;
+        width: 200px;
+        margin: 10px 20px;
+        text-align: center;
+        border-radius: 40px;
+        &:first-child {
+            color: $Shades-of-royal-blue--navy-3-hex;
+            border: 2px solid $Shades-of-royal-blue--navy-3-hex;
+        }
+        &:last-child {
+            color: $South-Beach-Target-Store-Mural-4-hex;
+            border: 2px solid $South-Beach-Target-Store-Mural-4-hex;
+        }
+        i {
+            padding-right: 8px;
+        }
+    }
+    
+}
+
+.post-img-container{
+    padding: 20px 0;
+}
+
+.post-image {
+    display: flex;
+    justify-content: center;
+    img {
+        max-width: 70%;
+        max-height: 500px;
+    }
+}
+
+.post-info-container {
+    width: 80%;
+    padding: 30px 0;
+    margin: 30px auto;
+    border-top: solid 3px $bg-grey;
+}
+
+.photo-information {
+    .likes {
+        a {
+            font-size: 1.6rem;
+            color: #212529;
+            &:hover {
+                color: $South-Beach-Target-Store-Mural-4-hex;
+            }
+        }
+    }
+    h3 {
+        font-weight: 700;
+    }
+}
+
+.post-name-avatar {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 3px $bg-grey;
+    vertical-align: center;
+    .post-avatar {
+        display: flex;
+        img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+    }
+}
+
+.post-loc-description {
+    padding: 20px 0;
+    i {
+        margin: 10px 0 10px;
+        padding-right: 5px;
+    }
+}
+
+.comments {
+    margin-top: 135px;
+}
+
+
+.comment-count {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 10px 0 10px;
+}
+
+.post-comment-form {
+    display: flex;
+    margin: 20px 0;
+    .comment-avatar {
+        padding-right: 10px;
+    }
+    .comment-form {
+        width: 100%;
+    }
+}
+
+.commenter-wrapper {
+    padding: 10px 0;
+    border-bottom: solid 3px $bg-grey;
+}
+
+.commenter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    .commenter-ava-name {
+        a {
+            font-weight: 700;
+            color: #212529;
+            &:hover {
+                color: $Shades-of-royal-blue--navy-3-hex;
+            }
+        }
+        img {
+            margin-right: 10px;
+        }
+    }
+    .comment-date {
+        font-size: 0.8rem;
+        color: #6C7582;
+    }
+}
+.comment {
+    padding-left: 45px;
+    
+    a {
+    color: $South-Beach-Target-Store-Mural-4-hex;
+        &:hover {
+        color: $South-Beach-Target-Store-Mural-4-hex;     
+        } 
+    }
 }

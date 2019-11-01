@@ -13,3 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
+a:hover {
+   text-decoration: none;
+   color: #0015FF;
+}
+
+a {
+   color: #0015FF;
+}
+
+ body {
+    font-family: 'Poppins', sans-serif;
+ }
+
+ .notice, .alert {
+   padding: 0px;
+ }

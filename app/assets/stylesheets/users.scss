@@ -1,3 +1,41 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'colors';
+
+.user-profile-page {
+    display: flex;
+    justify-content: center;
+    margin: 10px 20px;
+    padding: 20px;
+    a {
+        color: $Shades-of-royal-blue--navy-3-hex;
+        border: 2px solid $Shades-of-royal-blue--navy-3-hex;
+        padding: 10px 15px;
+        width: 220px;
+        margin: 10px 20px;
+        text-align: center;
+        border-radius: 40px;
+    }
+    i {
+        padding-right: 8px;
+    }
+}
+
+.user-info-container {
+    padding: 40px;
+    border-bottom: solid 3px $bg-grey;
+    .user-info {
+     text-align: center;
+     
+    }
+    .user-info-col {
+        margin: 0 auto;
+    }
+}
+
+.user-post-container {
+    padding: 20px 0 15px 0;
+}
+

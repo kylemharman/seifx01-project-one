@@ -1,84 +1,100 @@
 <%# edit or delete the post %>
-<div class="row">
-  <% if @post.user == current_user %>
-    <a href="<%= edit_post_path(@post) %>"><i class="far fa-edit"></i>Edit Post</a>
-	<a href="<%= post_path(@post) %>" data-method="delete" ><i class="far fa-trash-alt"></i>Delete Post</a>
-  <% end %>
-</div>
-
-<%# post image %>
-<div class="row">
-	<%= image_tag @post.image, class: "show-image" %>
-</div>
-
-<div class="row">
-	<div class="col-6 photo-information">
-		<%# like button and number of likes %>
-		<div>
-		<a href="<%= like_post_path(@post) %>" data-method="get">
-    		<i class="far fa-heart"></i>
-  		</a>
-		<%= @post.get_likes.size %>
-		</div>
-		<%# image title, username and avatar %>
-		<div>
-			<h3><%= @post.title %></h3>
-			<p>by <%= link_to @post.user.name, user_path(@post.user) %></p>
-			<% if @post.user.avatar.attached?  %>
- 				<%= link_to user_path(@post.user) do %>
-      			<%= image_tag @post.user.avatar, class: "menu-avatar" %>
-    			<% end %>
- 			<% end %>
-		</div>
-
-		<div>
-		 	<i class="far fa-compass"></i> <%= @post.location %>
-			<p><%= @post.description %></p>
-		</div>
-
+<div class="container">
+	<div class="row user-update-post">
+	<% if @post.user == current_user %>
+		<a href="<%= edit_post_path(@post) %>"><i class="far fa-edit "></i>Edit Post</a>
+		<a href="<%= post_path(@post) %>" data-method="delete" ><i class="far fa-trash-alt"></i>Delete Post</a>
+	<% end %>
 	</div>
-	
-	
-	<div class="col-6 comments">
-	  	<%# number of comments %>
-  		<div><%= comment_count = pluralize(@post.comments.count, "comment") %></div>
-	 	
-		 <div>
-			<div>
-				<% if current_user.avatar.attached? %>
-					<a href="<%= user_path(current_user)%>">
-						<%= image_tag current_user.avatar, class: 'menu-avatar' %>
-					</a>
-					<% else %>
-					<a href="<%= user_path(current_user)%>">
-						<i class="fas fa-user fa-lg"></i>
-					</a>	
-				<%end %>
-			</div>
-			<div>
-				<%# add comment %>
-				<%= render '/comments/form' %>
-			</div>
-		 </div>
+</div>
+<%# post image %>
+<div class="container post-img-container">
+	<div class="row post-image">
+		<%= image_tag @post.image %>
+	</div>
+</div>
 
-		<% @comments.each do |comment| %>
-			<div>
-				<div>
-					<% if comment.user.avatar.attached?  %>
-						<%= link_to user_path(comment.user) do %>
-						<%= image_tag comment.user.avatar, class: "menu-avatar" %>
+<div class="container post-info-container">
+	<div class="row justify-content-around">
+		<div class="col-md-5 photo-information">
+			<%# like button and number of likes %>
+			<div class="likes">
+			<a href="<%= like_post_path(@post) %>" data-method="get">
+				<i class="far fa-heart"></i>
+			</a>
+			<%= @post.get_likes.size %>
+			</div>
+			<%# image title, username and avatar %>
+			<div class="post-name-avatar">
+				<div class="post-title">
+					<h3><%= @post.title %></h3>
+					<p>by <%= link_to @post.user.name, user_path(@post.user) %></p>
+				</div>
+				<div class="post-avatar">
+					<% if @post.user.avatar.attached?  %>
+						<%= link_to user_path(@post.user) do %>
+						<%= image_tag @post.user.avatar %>
 						<% end %>
 					<% end %>
 				</div>
-				<div>
-				    <%= link_to comment.user.name, user_path(comment.user) %>
-     				<p><%= comment.content %></p>
-     				<p><%= comment.created_at.strftime("%d %b %y")%></p>
-					<% if user_signed_in? && current_user.id == comment.user_id  %>
-       					<%= link_to 'Remove', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-      				<% end %>
+			</div>
+
+			<div class="post-loc-description">
+				<div class="location"><i class="far fa-compass"></i> <%= @post.location %></div>
+				<div><i class="far fa-calendar-alt"></i> <%= @post.image.created_at.strftime("%d %b %y") %></div>
+				<p><%= @post.description %></p>
+				
+			</div>
+		</div>
+		
+		<div class="col-md-5 comments">
+			<%# number of comments %>
+			<div class="comment-count"><%= comment_count = pluralize(@post.comments.count, "comment") %></div>
+			
+			<div class="post-comment-form">
+				<div class="comment-avatar">
+					<% if current_user.avatar.attached? %>
+						<a href="<%= user_path(current_user)%>">
+							<%= image_tag current_user.avatar, class: 'menu-avatar' %>
+						</a>
+						<% else %>
+						<a href="<%= user_path(current_user)%>">
+							<i class="fas fa-user fa-lg"></i>
+						</a>	
+					<%end %>
+				</div>
+				<div class="comment-form">
+					<%# add comment %>
+					<%= render '/comments/form' %>
 				</div>
 			</div>
-    	<% end %>
+			
+			<% @comments.each do |comment| %>
+				<div class="commenter-wrapper">
+					<div>
+					<div class="commenter-container">
+						<div class="commenter-ava-name">
+							<% if comment.user.avatar.attached?  %>
+								<%= link_to user_path(comment.user) do %>
+								<%= image_tag comment.user.avatar, class: "menu-avatar" %>
+								<% end %>
+							<% end %>
+							<%= link_to comment.user.name, user_path(comment.user) %>
+						</div>
+						<div class="comment-date"> 
+							<p><%= comment.created_at.strftime("%d %b %y")%></p>
+						</div>
+					</div>
+					<div class="comment">
+							<p><%= comment.content %></p>
+							
+							<% if user_signed_in? && current_user.id == comment.user_id  %>
+								<%= link_to 'Remove', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+							<% end %>
+						</div>
+					</div>
+				</div>	
+			<% end %>
+		</div>
 	</div>
 </div>

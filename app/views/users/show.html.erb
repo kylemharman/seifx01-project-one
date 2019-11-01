@@ -1,58 +1,60 @@
 <%# current user profile page %>
 <% if current_user.id == @user.id %>
-  <div class="row ">
-    <div class="col-12">
-      <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar, class: 'avatar' %>
-      <% else %>
-        <div>
-          <i class="fas fa-user-circle fa-6x"></i>
-        </div>
-      <%end %>
-      <div>
-        <%= link_to 'Edit Profile', edit_user_path(current_user) %>
-      </div>
-      <h3><%= current_user.name %></h3>
-      <p><%= current_user.username %></p>
 
-      <p><%= current_user.bio %></p>
-
-      <div class="row">
-        <% if user_signed_in? %>
-          <%= link_to 'ADD NEW SCAPE', new_post_path %>
-        <% end %>
-      </div>
-    </div>
-  </div>
+<div class="container justify-content-center user-info-container">
+	<div class="row user-info">
+		<div class="col-6 user-info-col">
+			<% if current_user.avatar.attached? %>
+				<%= image_tag current_user.avatar, class: 'avatar' %>
+			<% else %>
+				<div>
+					<i class="fas fa-user-circle fa-6x"></i>
+				</div>
+			<%end %>
+			<div>
+				<%= link_to 'Edit Profile', edit_user_path(current_user) %>
+			</div>
+			<h3><%= current_user.name %></h3>	
+			<p><%= post_count = pluralize(@user.posts.count, "post") %></p>
+			<p><%= current_user.bio %></p>
+		</div>
+	</div>
+	<div class="row user-profile-page">
+		<div class="new-post-btn">
+			<% if user_signed_in? %>
+				<a href="<%= new_post_path %>"><i class="fas fa-camera"></i>Add New Scape</a>
+			<% end %>
+		</div>
+	</div>
+</div>
 
 <%#  another users profile page %>
 <% else %>
-  <div class="row ">
-    <div class="col-12">
-      <% if @user.avatar.attached? %>
-        <%= image_tag @user.avatar, class: 'avatar' %>
-      <% else %>
-        <div>
-          <i class="fas fa-user-circle fa-8x"></i>
-        </div>
-      <%end %>
-      <h3><%= @user.name %></h3>
-      <p><%= @user.username %></p>
-
-      <p><%= @user.bio %></p>
-
-
-
-    </div>
-  </div>
+<div class="container justify-content-center user-info-container">
+	<div class="row user-info">
+		<div class="col-6 user-info-col">
+			<% if @user.avatar.attached? %>
+				<%= image_tag @user.avatar, class: 'avatar' %>
+			<% else %>
+				<div>
+					<i class="fas fa-user-circle fa-6x"></i>
+				</div>
+			<%end %>
+			<h3><%= @user.name %></h3>	
+			<p><%= post_count = pluralize(@user.posts.count, "post") %></p>
+			<p><%= @user.bio %></p>
+		</div>
+	</div>
+</div>
 <% end %>
 
 <%# users uploaded images %>
-<p><%= @user.posts.size %> Posts</p>
-<div>
-  <% @posts.each do |post|%>
-    <div>
-      <%= link_to (image_tag post.image, class: "show-image"), post %>
-    </div>
-  <% end %>
+<div class="container user-post-container">
+	<div>
+		<% @posts.each do |post|%>
+			<div>
+			<%= link_to (image_tag post.image, class: "show-image"), post %>
+			</div>
+		<% end %>
+	</div>
 </div>
