@@ -1,21 +1,16 @@
-<% if user_signed_in? %>
-    <div>
-        <%= link_to 'ADD NEW SCAPE', new_post_path %>
-    </div>
-<% end %>
+
+
+<h1>Latest Scapes</h1>
 
 <% @post.each do |post| %>
     <div>
         <% if post.user.avatar.attached?  %>
             <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.avatar, class: "menu-avatar" %>
+                <%= image_tag post.user.square, class: "menu-avatar" %>
             <% end %>
         <% end %>
-        <span>
-            <%= link_to user_path(post.user) do %>
-                <%= post.user.username %>
-            <% end %>
-        </span>
+        <%= link_to post.user.username, user_path(post.user) %>
+        <p><%= post.image.created_at.strftime("%d %b %y") %></p>
     </div>
     <div>
         <%= link_to (image_tag post.image, class: "show-image"), post %>    

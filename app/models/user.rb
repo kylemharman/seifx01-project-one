@@ -7,4 +7,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments
   has_one_attached :avatar
+
+  def square 
+    return self.avatar.variant(resize: '200x200!')
+  end
+
 end

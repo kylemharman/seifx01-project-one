@@ -1,36 +1,58 @@
-<div class="row ">
+<%# current user profile page %>
+<% if current_user.id == @user.id %>
+  <div class="row ">
     <div class="col-12">
-        <% if current_user.avatar.attached? %>
-            <%= image_tag current_user.avatar, class: 'avatar' %>
-            <% else %>
-            <div>
-                <i class="fas fa-user-circle fa-8x"></i>
-            </div>     
-        <%end %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.square, class: 'avatar' %>
+      <% else %>
         <div>
-            <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+          <i class="fas fa-user-circle fa-6x"></i>
         </div>
-        
-        <h3><%= current_user.name %></h3>
-        <p><%= current_user.bio %></p>
-        <a href="<%= current_user.website %>"> <i class="fas fa-globe"></i> <%= current_user.website %></a>
+      <%end %>
+      <div>
+        <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+      </div>
+      <h3><%= current_user.name %></h3>
+      <p><%= current_user.username %></p>
+
+      <p><%= current_user.bio %></p>
+
+      <div class="row">
+        <% if user_signed_in? %>
+          <%= link_to 'ADD NEW SCAPE', new_post_path %>
+        <% end %>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="row">
-    <% if user_signed_in? %>
-    <div>
-        <%= link_to 'ADD NEW SCAPE', new_post_path %>
+<%#  another users profile page %>
+<% else %>
+  <div class="row ">
+    <div class="col-12">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.square, class: 'avatar' %>
+      <% else %>
+        <div>
+          <i class="fas fa-user-circle fa-8x"></i>
+        </div>
+      <%end %>
+      <h3><%= @user.name %></h3>
+      <p><%= @user.username %></p>
+
+      <p><%= @user.bio %></p>
+
+
+
     </div>
-    <% end %>
-</div>
+  </div>
+<% end %>
 
-<p>add a counter for amount of posts</p>
-
+<%# users uploaded images %>
+<p><%= @user.posts.size %> Posts</p>
 <div>
   <% @posts.each do |post|%>
     <div>
-        <%= link_to (image_tag post.image, class: "show-image"), post %>
+      <%= link_to (image_tag post.image, class: "show-image"), post %>
     </div>
   <% end %>
 </div>
