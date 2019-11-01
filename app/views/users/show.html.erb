@@ -3,7 +3,7 @@
   <div class="row ">
     <div class="col-12">
       <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.square, class: 'avatar' %>
+        <%= image_tag current_user.avatar, class: 'avatar' %>
       <% else %>
         <div>
           <i class="fas fa-user-circle fa-6x"></i>
@@ -30,7 +30,7 @@
   <div class="row ">
     <div class="col-12">
       <% if @user.avatar.attached? %>
-        <%= image_tag @user.square, class: 'avatar' %>
+        <%= image_tag @user.avatar, class: 'avatar' %>
       <% else %>
         <div>
           <i class="fas fa-user-circle fa-8x"></i>

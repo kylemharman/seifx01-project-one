@@ -6,7 +6,7 @@
     <div>
         <% if post.user.avatar.attached?  %>
             <%= link_to user_path(post.user) do %>
-                <%= image_tag post.user.square, class: "menu-avatar" %>
+                <%= image_tag post.user.avatar, class: "menu-avatar" %>
             <% end %>
         <% end %>
         <%= link_to post.user.username, user_path(post.user) %>
