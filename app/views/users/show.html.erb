@@ -49,12 +49,16 @@
 <% end %>
 
 <%# users uploaded images %>
-<div class="container user-post-container">
-	<div>
-		<% @posts.each do |post|%>
-			<div>
-			<%= link_to (image_tag post.image, class: "show-image"), post %>
-			</div>
-		<% end %>
-	</div>
+
+<div class="container user-posts">
+ <div class=post-section>   
+        <% @posts.each do |post| %>
+            <div class="post-container">
+                <div>
+                    <%= link_to (image_tag post.image, class: "show-image"), post %>    
+                </div>
+            </div>         
+        <% end %>
+    </div> 
 </div>
+
