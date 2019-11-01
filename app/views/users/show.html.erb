@@ -1,0 +1,36 @@
+<div class="row ">
+    <div class="col-12">
+        <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, class: 'avatar' %>
+            <% else %>
+            <div>
+                <i class="fas fa-user-circle fa-8x"></i>
+            </div>     
+        <%end %>
+        <div>
+            <%= link_to 'Edit Profile', edit_user_path(current_user) %>
+        </div>
+        
+        <h3><%= current_user.name %></h3>
+        <p><%= current_user.bio %></p>
+        <a href="<%= current_user.website %>"> <i class="fas fa-globe"></i> <%= current_user.website %></a>
+    </div>
+</div>
+
+<div class="row">
+    <% if user_signed_in? %>
+    <div>
+        <%= link_to 'ADD NEW SCAPE', new_post_path %>
+    </div>
+    <% end %>
+</div>
+
+<p>add a counter for amount of posts</p>
+
+<div>
+  <% @posts.each do |post|%>
+    <div>
+        <%= link_to (image_tag post.image, class: "show-image"), post %>
+    </div>
+  <% end %>
+</div>

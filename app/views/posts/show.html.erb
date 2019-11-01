@@ -1,7 +1,9 @@
-<% if @post.user == current_user %>
-    <%= link_to 'Edit', edit_post_path(@post) %>
-    <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"} %>
-<% end %>
+<div class="row">
+    <% if @post.user == current_user %>
+        <%= link_to 'Edit', edit_post_path(@post) %>
+        <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: "Are you sure?"} %>
+    <% end %>
+</div>
 
 <%# post %>
 <span><%= @post.user.name %></span>
@@ -24,23 +26,26 @@
     </a>
 </div>
 
-<div><i class="fas fa-image"></i> <%= @post.title %></div>
-<div><i class="fas fa-compass"></i> <%= @post.location %></div>
-<div><i class="fas fa-camera"></i> equipment used needs to go here </div>
-<p><%= @post.description %></p>
-<%# END post %>
+<div class="row">
+    <div class="col-6">
+        <div><i class="fas fa-image"></i> <%= @post.title %></div>
+        <div><i class="fas fa-compass"></i> <%= @post.location %></div>
+        <div><i class="fas fa-camera"></i> equipment used needs to go here </div>
+        <p><%= @post.description %></p>
+    </div>
+    <div class="col-6">
+        <%# add comment %>
+        <%= render '/comments/form' %>
 
-<%# add comment %>
-<%= render '/comments/form' %>
+        <% @comments.each do |comment| %>
+            <% if user_signed_in? && current_user.id == comment.user_id  %>
+                <%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+            <strong><%= comment.user.name %></strong>
+            <p><%= comment.content %></p>
+        <% end %>
+    </div>
+</div>
 
-<% @comments.each do |comment| %>
-<strong><%= comment.user.name %></strong>
-<p><%= comment.content %></p>
-<% end %>
 
 
-<% if current_user %>
-    <%= link_to 'EDIT', edit_post_path(@post) %>
-    <%= link_to 'DESTROY', post_path(@post), method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
-<%= link_to 'HOME', root_path %>
