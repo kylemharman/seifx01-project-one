@@ -4,6 +4,24 @@
 
 @import 'colors';
 
+.navbar {
+    a {
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+     }
+}
+
+.plus-nav {
+    margin-top: 100px;
+}
+
+
+.sign-up-btn {
+    border: 2px solid $Shades-of-royal-blue--navy-3-hex;
+    border-radius: 40px;
+}
+
 .user-profile-page {
     display: flex;
     justify-content: center;
@@ -42,3 +60,51 @@
 .user-posts {
     margin: 20px auto;
 }
+
+.form-bg {
+    background-image: url("https://images.pexels.com/photos/1533720/pexels-photo-1533720.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items:flex-start;
+    .form-container {
+        width: 500px;
+        background-color: #fff;
+        padding: 50px;
+        margin: 120px auto;
+        box-shadow: 5px 10px 18px #000;
+        h2 {
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 3px solid $bg-grey;
+        }
+        
+        #post_image, #user_avatar {
+            margin: 15px 0;
+            padding: 6px 0;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            width: 100%;
+        }
+        
+        .avatar {
+            display: flex;
+            margin: 0 auto;
+        }
+    }
+}
+
+input.form-btn-user {
+    width: 100%;
+    color: $Shades-of-royal-blue--navy-3-hex;
+    border: 2px solid $Shades-of-royal-blue--navy-3-hex;
+    border-radius: 40px;
+    margin-bottom: 25px;
+    &:hover {
+        color: $Shades-of-royal-blue--navy-3-hex;
+    }
+}
+

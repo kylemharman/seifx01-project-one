@@ -1,7 +1,7 @@
 <%# current user profile page %>
 <% if current_user.id == @user.id %>
 
-<div class="container justify-content-center user-info-container">
+<div class="container justify-content-center user-info-container plus-nav">
 	<div class="row user-info">
 		<div class="col-6 user-info-col">
 			<% if current_user.avatar.attached? %>
@@ -30,7 +30,7 @@
 
 <%#  another users profile page %>
 <% else %>
-<div class="container justify-content-center user-info-container">
+<div class="container justify-content-center user-info-container plus-nav">
 	<div class="row user-info">
 		<div class="col-6 user-info-col">
 			<% if @user.avatar.attached? %>
@@ -54,7 +54,7 @@
  <div class=post-section>   
         <% @posts.each do |post| %>
             <div class="post-container">
-                <div>
+				<div>
                     <%= link_to (image_tag post.image, class: "show-image"), post %>    
                 </div>
             </div>         
